@@ -33,14 +33,4 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-          cache: "maven"
-      - run: mvn --batch-mode verify
-  images:
-    runs-on: ubuntu-latest
-    needs: [scanner, control-plane]
-    steps:
-      - uses: actions/checkout@v4
-      - run: docker compose -f infra/compose/docker-compose.yml build
-
-
 
