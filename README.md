@@ -1,4 +1,3 @@
-**"Ipaye's Intel"** is memorable, personal, and sounds like a cybersecurity intelligence company rather than just another developer tool.
 
 # Brand Identity
 
