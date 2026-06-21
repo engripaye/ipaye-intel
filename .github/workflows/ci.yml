@@ -27,3 +27,9 @@ jobs:
     defaults:
       run:
         working-directory: app/control-plane
+    steps:
+      - uses: action/checkout@v4
+      - uses: action/setup-java@v4
+        with:
+          distribution: temurin
+          java-version:
