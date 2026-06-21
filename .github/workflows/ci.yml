@@ -32,4 +32,5 @@ jobs:
       - uses: action/setup-java@v4
         with:
           distribution: temurin
-          java-version:
+          java-version: "21"
+
