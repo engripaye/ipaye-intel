@@ -1,3 +1,6 @@
 services:
   postgres:
-    image:
+    image: postgres17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-aegisforge}
+      POSTGRES_USER: ${POSTGRES_USER:-aegisforge}
