@@ -18,4 +18,8 @@ services:
 
   control-plane:
     build:
+      context: ../../apps/control-plane
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-aegisforge}
       
+
