@@ -42,6 +42,16 @@ services:
       SCANNER_DATABASE_SDN: postgresql://${POSTGRES_USER:-aegisforge}:${POSTGRES_PASSWORD:-aegisforge}@postgres:5432/${POSTGRES_DB:-aegisforge}
       WORKER_ID: ${WORKER_ID:-local-worker-1}
       WORKER_POLL_SECONDS: ${WORKER_POLL_SECONDS:-2}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      control-plane:
+        condition: service_started
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
 
 
 
