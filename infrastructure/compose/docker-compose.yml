@@ -24,5 +24,19 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-aegisforge}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aegisforge}
       API_BOOSTRAP_ENABLED: ${API_BOOTSTRAP_ENABLED:-true}
+    ports:
+    - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+  scanner-worker:
+    build:
+
 
 
