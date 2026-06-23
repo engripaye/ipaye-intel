@@ -37,6 +37,11 @@ services:
 
   scanner-worker:
     build:
+      context: ../../apps/scanner-worker
+    environment:
+      SCANNER_DATABASE_SDN: postgresql://${POSTGRES_USER:-aegisforge}:${POSTGRES_PASSWORD:-aegisforge}@postgres:5432/${POSTGRES_DB:-aegisforge}
+      WORKER_ID: ${WORKER_ID:-local-worker-1}
+      WORKER_POLL_SECONDS: ${WORKER_POLL_SECONDS:-2}
 
 
 
