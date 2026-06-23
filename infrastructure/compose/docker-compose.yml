@@ -21,5 +21,8 @@ services:
       context: ../../apps/control-plane
     environment:
       DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-aegisforge}
-      
+      POSTGRES_USER: ${POSTGRES_USER:-aegisforge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aegisforge}
+      API_BOOSTRAP_ENABLED: ${API_BOOTSTRAP_ENABLED:-true}
+
 
