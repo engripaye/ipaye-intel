@@ -1,0 +1,10 @@
+{
+  "name": "Production JWT verifier",
+  "type": "JWT_CONFIG",
+  "content": {
+    "allowed_algorithms": ["RS256"],
+    "require_expiration": true,
+    "validate_issuer": true,
+    "validate_audience": true
+  }
+}
