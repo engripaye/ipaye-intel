@@ -2,6 +2,7 @@ package dev.engripaye.controlplane.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -29,5 +30,12 @@ public class ApiExceptionHandler {
             .map(error -> error.getField() + ": " + error.getDefaultMessage()).toList());
     return problem;
     }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    ProblemDetail conflict(){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, "Resource already exists or violates a constraint");
+    }
+
+
 }
 
