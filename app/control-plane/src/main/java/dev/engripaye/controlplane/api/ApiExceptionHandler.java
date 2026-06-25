@@ -3,6 +3,7 @@ package dev.engripaye.controlplane.api;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -37,5 +38,9 @@ public class ApiExceptionHandler {
     }
 
 
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    ProblemDetail notFound(){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, "Resource was not found in this organization");
+    }
 }
 
