@@ -26,7 +26,8 @@ public class ApiExceptionHandler {
     ProblemDetail validation(MethodArgumentNotValidException exception){
     var problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Request validation failed");
     problem.setProperty("errors", exception.getBindingResult().getFieldErrors().stream()
-            .map(error -> error.getField() + ":"));
+            .map(error -> error.getField() + ": " + error.getDefaultMessage()).toList());
+    return problem;
     }
 }
 
