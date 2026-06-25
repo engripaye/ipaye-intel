@@ -16,7 +16,7 @@ public class ApiExceptionHandler {
     ProblemDetail status(ResponseStatusException exception, HttpServletRequest request){
         var problem = ProblemDetail.forStatusAndDetail(exception.getStatusCode(), exception.getReason());
         problem.setInstance(URI.create(request.getRequestURI()));
-
+        return problem;
 
     }
 }
