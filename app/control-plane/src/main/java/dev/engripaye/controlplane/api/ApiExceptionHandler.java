@@ -2,6 +2,7 @@ package dev.engripaye.controlplane.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +24,9 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ProblemDetail validation(MethodArgumentNotValidException exception){
-
+    var problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Request validation failed");
+    problem.setProperty("errors", exception.getBindingResult().getFieldErrors().stream()
+            .map(error -> error.getField() + ":"));
     }
 }
 
