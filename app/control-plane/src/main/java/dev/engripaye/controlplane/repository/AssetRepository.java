@@ -1,15 +1,13 @@
 package dev.engripaye.controlplane.repository;
 
 import dev.engripaye.controlplane.dto.AssetResponse;
-import dev.engripaye.controlplane.dto.CreateAccessRequest;
+import dev.engripaye.controlplane.dto.CreateAssetRequest;
 import dev.engripaye.controlplane.mapper.AssetRowMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
-
-import static org.springframework.data.relational.core.query.Query.query;
 
 @Repository
 public class AssetRepository {
@@ -28,7 +26,7 @@ public class AssetRepository {
     public AssetResponse create(
             UUID organizationId,
             UUID projectId,
-            CreateAccessRequest request
+            CreateAssetRequest request
     ){
         return db.sql("""
             INSERT INTO assets(...)
