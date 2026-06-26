@@ -17,6 +17,10 @@ public class AssetController {
         this.objectMapper = objectMapper;
     }
 
+    public enum AssetType{
+        API_SPEC, JWT_CONFIG, OAUTH_CONFIG, SOURCE_TEXT, CLOUD_CONFIG
+    }
+
 
     
 }
