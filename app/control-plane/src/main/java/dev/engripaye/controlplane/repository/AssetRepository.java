@@ -12,12 +12,16 @@ import java.util.UUID;
 @Repository
 public class AssetRepository {
 
-    private final AssetRepository repository;
+    private final JdbcClient db;
+    private final AssetRowMapper mapper;
 
-    public AssetRepository(AssetRepository repository) {
-        this.repository = repository;
+    public AssetRepository(JdbcClient db,
+                           AssetRowMapper mapper) {
+
+        this.db = db;
+        this.mapper = mapper;
+
     }
-
 
     public AssetResponse create(
             UUID organizationId,
