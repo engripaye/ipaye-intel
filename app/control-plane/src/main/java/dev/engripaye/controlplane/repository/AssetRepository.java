@@ -6,6 +6,7 @@ import dev.engripaye.controlplane.mapper.AssetRowMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -23,7 +24,16 @@ public class AssetRepository {
             UUID projectId,
             CreateAssetRequest request
     ){
-        return re
+        return repository.create(
+                organizationId,
+                projectId,
+                request
+        );
+
 
     }
+
+    public List<AssetResponse> list(
+
+    )
 }
