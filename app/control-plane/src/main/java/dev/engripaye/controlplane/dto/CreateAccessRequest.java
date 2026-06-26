@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import tools.jackson.databind.JsonNode;
 
-public record AccessRequest (
+public record CreateAccessRequest (
         @NotBlank
         @Size(max = 160)
         String name,
