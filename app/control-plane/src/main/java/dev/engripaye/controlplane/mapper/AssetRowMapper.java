@@ -3,6 +3,7 @@ package dev.engripaye.controlplane.mapper;
 import dev.engripaye.controlplane.dto.AssetResponse;
 import dev.engripaye.controlplane.model.AssetType;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import javax.swing.tree.RowMapper;
@@ -32,8 +33,14 @@ public class AssetRowMapper implements RowMapper<AssetResponse> {
                 AssetType.valueOf(rs.getString("type")),
                 parse(rs.getString("content")),
                 rs.getTimestamp("created_At").toInstant(),
+                rs.getTimestamp("updated_at").toInstant()
+        );
 
-        )
+    }
 
+    private JsonNode parse(String json){
+        try {
+
+        }
     }
 }
