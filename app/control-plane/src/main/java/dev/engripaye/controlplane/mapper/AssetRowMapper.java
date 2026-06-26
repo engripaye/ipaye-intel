@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
-import javax.swing.tree.RowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 @Component
@@ -23,7 +24,7 @@ public class AssetRowMapper implements RowMapper<AssetResponse> {
 
 
     @Override
-    public AssetResponse mapRow(ResultSet rs, int rowNum) throws Exception{
+    public AssetResponse mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         return new AssetResponse(
                 rs.getObject("id", UUID.class),
