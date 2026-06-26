@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/cobtrol-plane/pom.xml" />
         <option value="$PROJECT_DIR$/control-plane/pom.xml" />
+        <option value="$PROJECT_DIR$/app/control-plane/pom.xml" />
       </list>
     </option>
   </component>
