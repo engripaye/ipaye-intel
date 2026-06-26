@@ -29,11 +29,37 @@ public class AssetRepository {
             CreateAssetRequest request
     ){
         return db.sql("""
-            INSERT INTO assets(...)
-            ...
-            RETURNING ...
-            """)
-                .param(...)
+                INSERT INTO assets (
+                    organization_id,
+                    project_id,
+                    name,
+                    type,
+                    content
+                )
+                SELECT
+                    :organizationId,
+                    p.id,
+                    :name,
+                    CAST(:type AS asset_type),
+                    CAST(:content AS jsonb)
+                FROM projects p
+                WHERE p.id = :projectId
+                  AND p.organization_id = :organizationId
+                RETURNING
+                    id,
+                    organization_id,
+                    project_id,
+                    name,
+                    type,
+                    content,
+                    created_at,
+                    updated_at
+                """)
+                .param("organizationId", organizationId)
+                .param("projectId", projectId)
+                .param("name", request.name())
+                .param("type", request.type().name())
+                .param("content", request.content().toString())
                 .query(mapper)
                 .single();
 
@@ -44,9 +70,22 @@ public class AssetRepository {
                                        UUID projectId) {
 
         return db.sql("""
-            SELECT ...
-            """)
-                .param(...)
+                SELECT
+                    id,
+                    organization_id,
+                    project_id,
+                    name,
+                    type,
+                    content,
+                    created_at,
+                    updated_at
+                FROM assets
+                WHERE organization_id = :organizationId
+                  AND project_id = :projectId
+                ORDER BY created_at DESC
+                """)
+                .param("organizationId", organizationId)
+                .param("projectId", projectId)
                 .query(mapper)
                 .list();
 

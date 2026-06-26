@@ -12,10 +12,10 @@ public record CreateAssetRequest(
         String name,
 
         @NotNull
-        AssetType Type,
+        AssetType type,
 
         @NotNull
-        JsonNode context
+        JsonNode content
 
 ){
 
