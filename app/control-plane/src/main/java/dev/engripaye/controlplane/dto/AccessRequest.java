@@ -1,7 +1,7 @@
 package dev.engripaye.controlplane.dto;
 
 import dev.engripaye.controlplane.model.AssetType;
-import tools.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public record AccessRequest (
         @NotBlank
