@@ -1,4 +1,10 @@
 package dev.engripaye.controlplane.model;
 
-public class AssetType {
+public enum AssetType {
+
+    API_SPEC,
+    JWT_CONFIG,
+    OAUTH_CONFIG,
+    SOURCE_TEXT,
+    CLOUD_CONFIG
 }
