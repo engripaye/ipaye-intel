@@ -2,12 +2,12 @@ package dev.engripaye.controlplane.mapper;
 
 import dev.engripaye.controlplane.dto.AssetResponse;
 import dev.engripaye.controlplane.model.AssetType;
+import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
 
 import javax.swing.tree.RowMapper;
-import javax.swing.tree.TreePath;
 import java.sql.ResultSet;
 import java.util.UUID;
 
@@ -40,7 +40,12 @@ public class AssetRowMapper implements RowMapper<AssetResponse> {
 
     private JsonNode parse(String json){
         try {
-
+            return objectMapper.readTree(json);
+        }catch (Exception ex){
+            throw new DataRetrievalFailureException(
+                    "Stored asset content is invalid JSON",
+                    ex
+            );
         }
     }
 }
