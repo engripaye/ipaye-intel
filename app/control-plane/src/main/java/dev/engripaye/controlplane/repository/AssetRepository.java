@@ -34,6 +34,11 @@ public class AssetRepository {
     }
 
     public List<AssetResponse> list(
+        UUID organizationId,
+        UUID projectId
+    ){
+        return repository.findAll(
 
-    )
+        )
+    }
 }
