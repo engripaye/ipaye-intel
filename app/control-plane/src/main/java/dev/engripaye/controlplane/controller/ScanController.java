@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -42,5 +43,21 @@ public class ScanController {
                 .param("projectId", projectId)
                 .param("assetId", request.assetId())
                 .query(Scan.class).single();
+    }
+
+    @GetMapping
+    List<Scan> list(
+            @RequestHeader("X-Organization-Id") UUID organizationId,
+            @PathVariable UUID projectId
+    ){
+        return db.sql("""
+                SELECT id, organization_id, project_id, asset_id, status,
+                       scanner_version, error_message, queued_at, started_at, completed_at
+                FROM scans WHERE organization_id = :organizationId AND project_id = :projectId
+                ORDER BY queued_at DESC LIMIT 100
+                """)
+                .param("organizationId", organizationId)
+                .param("projectId", projectId)
+                .query(Scan.class).list();
     }
 }
