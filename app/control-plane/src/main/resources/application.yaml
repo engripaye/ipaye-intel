@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: aegisforge-control-plane
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/aegisforge}
+    username: ${POSTGRES_USER:aegisforge}
+    password: ${POSTGRES_PASSWORD:aegisforge}
+    hikari:
+      maximum-pool-size: 10
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+server:
+  shutdown: graceful
+  error:
+    include-message: never
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+app:
+  bootstrap-enabled: ${API_BOOTSTRAP_ENABLED:false}
